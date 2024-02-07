@@ -1,15 +1,26 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import './index.css';
-import App from './App';
 import reportWebVitals from './reportWebVitals';
+import { StoreProvider } from './globalStore/StoreProvider';
+import { BookListPage } from './books/BooksListPage/BooksListPage';
+
+import { bookStore } from './books/BooksList/BooksList.store';
+import { booksModeStore } from './books/ModeToggler/ModeToggler.store';
+
+const stores = {
+  bookStore,
+  booksModeStore,
+};
 
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement
 );
 root.render(
   <React.StrictMode>
-    <App />
+    <StoreProvider stores={stores}>
+      <BookListPage />
+    </StoreProvider>
   </React.StrictMode>
 );
 
